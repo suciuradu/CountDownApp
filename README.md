@@ -4,8 +4,7 @@ A simple free and open source app to count document pages from anywhere. Drag an
 
 ## Demo
 
-[![CountDown App](https://gifs.com/gif/countdown-app-5Qpp4v)]
-
+![](countdown-gif.gif)
 
 ## Feature Done 
 
