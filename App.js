@@ -1,21 +1,42 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
+import EventList from './EventList';
+import EventForm from './EventForm';
+import { YellowBox } from 'react-native';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+YellowBox.ignoreWarnings([
+  'Warning: componentWillMount is deprecated',
+  'Warning: componentWillReceiveProps is deprecated',
+  'Warning: componentWillReceiveProps has been renamed',
+  'Animated: `useNativeDriver` was not specified',
+]);
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+const AppNavigator = createStackNavigator(
+  {
+    list: {
+      screen: EventList, 
+      navigationOptions: {
+          title: "CountDown",
+      },
+    },
+    form: {
+      screen: EventForm, 
+      navigationOptions: {
+          headerBackTitle: " ",
+          headerTitleStyle: {color:'black'},
+          headerTintColor: '#f2d705',
+        },
+    },
   },
-});
+  {
+    initialRouteName: 'list',
+  },
+);
+
+const AppContainer = createAppContainer(AppNavigator);
+export default class App extends React.Component {
+  render() {
+    return <AppContainer />;
+  }
+}
